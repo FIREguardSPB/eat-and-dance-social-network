@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   skillsDance: [{ type: String }]
 
 });
-
+// Метод создания поста от имени текущего пользователя
 userSchema.methods.createpost = async function (text, theme) {
   const themeRef = await Theme.findOne({ name: theme })
   const postsRef = await this.postsRef
@@ -31,17 +31,23 @@ userSchema.methods.createpost = async function (text, theme) {
   await themeRef.save()
   await post.save()
   await this.save()
-
 }
 
-userSchema.methods.createcomment = async function (text, post, touser) {
+// Метод создания комментария под текущим постом от имени текущего пользователя
+userSchema.methods.createcomment = async function (text, post, receiver) {
+  const postsRef = await this.postsRef
+  const commentRef = await Post.findOne({_id: post})
   const comment = new Commnet({
     postRef: post,
-    commentDate: Date.now(),
-    postAuthor: this._id,
     commentText: text,
-    toUser: touser
+    commentDate: Date.now(),
+    commentAuthor: this._id,
+    toUser: receiver
   })
+  postsRef.push(comment._id)
+  commentRef.push(comment._id)
+  await postsRef.save()
+  await commentRef.save()
   await comment.save()
 }
 
