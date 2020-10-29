@@ -7,7 +7,6 @@ const isLogin = require('../middleware/checklogin')
 
 const saltRounds = 10;
 const router = express.Router();
-const isLogin= require('../middleware/checklogin')
 
 
 router.get("/", isLogin, (req, res) => {
