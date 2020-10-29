@@ -6,4 +6,5 @@ const themeSchema = new mongoose.Schema({
 });
 
 const Theme = new mongoose.model('Theme', themeSchema);
-module.exports = Theme  
+
+module.exports = mongoose.model('Theme', themeSchema);
