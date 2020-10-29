@@ -7,13 +7,12 @@ const themeSchema = new mongoose.Schema({
 });
 
 themeSchema.methods.showPosts = async function(){
-  const posts = this.posts
-for(post in posts){
-  const newp = await Post.findOne({_id: posts[post]})
+  const posts = this.posts.populate('postText')
+  console.log(posts);
+// for(post in posts){
+//   const newp = await Post.findOne({_id: posts[post]})
 }
   
-}
 
 const Theme = new mongoose.model('Theme', themeSchema);
-
 module.exports = mongoose.model('Theme', themeSchema);
