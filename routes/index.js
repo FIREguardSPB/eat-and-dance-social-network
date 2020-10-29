@@ -2,17 +2,22 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
+const isLogin = require('../middleware/checklogin')
+
 
 const saltRounds = 10;
 const router = express.Router();
 const isLogin= require('../middleware/checklogin')
 
+
 router.get("/", isLogin, (req, res) => {
   res.render("main", {Inlogin: res.locals.isLogin});
+
 });
 // router.get("/",  (req, res) => {
 //   res.render("main");
 // });
+
 
 router
   .route("/registration")
@@ -30,6 +35,9 @@ router
       });
       await user.save();
       req.session.user = user;
+
+      res.redirect("/dance");
+
       res.redirect("/");
     } catch (error) {
       next(error);
@@ -48,6 +56,7 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
+
       res.redirect("/");
 
 
