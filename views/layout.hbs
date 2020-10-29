@@ -24,7 +24,7 @@ body { background: url("https://images.unsplash.com/photo-1603892956520-82a1fa05
       <a class="brand-logo">FooDance</a>
       <ul class="right hide-on-med-and-down">
         {{#if Inlogin}}
-        <li><a href="/account">Account</a></li>
+        <li><a href="/auth/account/{{user._id}}">Account</a></li>
         <li><a href="/logout">Log Out</a></li>
         {{else}}
         <li><a href="/login">Log In</a></li>
