@@ -15,4 +15,6 @@ themeSchema.methods.showPosts = async function(){
   
 
 const Theme = new mongoose.model('Theme', themeSchema);
+
+>>>>>>> main
 module.exports = mongoose.model('Theme', themeSchema);
