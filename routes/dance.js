@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
+const Post = require('../models/posts')
 
 const saltRounds = 10;
 // const app 
@@ -16,17 +17,7 @@ res.render('index_dance'))
 // })
 
 /* create newPost. */
-router.get('/ajax-create-post', async function(req, res) {
-  // const {post} = req.body
-  // const newPost = new Post({
-  //   completed: false,
-  //   text: todo
-  // })
-  // await newPost.save()
-  
-  res.render('newPost')
-  
-});
+router.get('/ajax-create-post', (req, res) => res.render('newPost') )
 router.post('/ajax-create-post', async function(req, res) {
   // const {post} = req.body
   // const newPost = new Post({
@@ -34,12 +25,27 @@ router.post('/ajax-create-post', async function(req, res) {
   //   text: todo
   // })
   // await newPost.save()
+  const {newPost} = req.body
+  console.log(newPost)
+  const user = await User.findOne({username: 'Davonte16'})
+  await user.createpost(newPost, '5f9aabd25cde340422a4492f')
   
-  const {text} = req.body
-  console.log(text);
-  res.json({text, success: true})
+  res.redirect('/')
   
 });
+// router.post('/ajax-create-post', async function(req, res) {
+//   // const {post} = req.body
+//   // const newPost = new Post({
+//   //   completed: false,
+//   //   text: todo
+//   // })
+//   // await newPost.save()
+  
+//   const {text} = req.body
+//   console.log(text);
+//   res.json({text, success: true})
+  
+// });
 
 //===================.............>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
