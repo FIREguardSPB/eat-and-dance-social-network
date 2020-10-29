@@ -2,13 +2,16 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
+const isLogin = require('../middleware/checklogin')
+
 
 const saltRounds = 10;
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("main");
+  res.render("main", {id: req.session.user._id});
 });
+
 
 router
   .route("/registration")
@@ -26,6 +29,9 @@ router
       });
       await user.save();
       req.session.user = user;
+
+      res.redirect("/dance");
+
       res.redirect("/");
     } catch (error) {
       next(error);
@@ -44,6 +50,7 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
+
       res.redirect("/");
 
 
