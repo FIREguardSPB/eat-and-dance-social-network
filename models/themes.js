@@ -8,8 +8,8 @@ const themeSchema = new mongoose.Schema({
 });
 
 themeSchema.methods.showPosts = async function () {
-  const id = this._id
-  return await Post.find({ theme: id })
+  return await Post.find({ theme: this.id })
+  
 }
 
 const Theme = new mongoose.model('Theme', themeSchema);
