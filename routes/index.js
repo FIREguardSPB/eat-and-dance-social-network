@@ -5,10 +5,14 @@ const User = require("../models/users");
 
 const saltRounds = 10;
 const router = express.Router();
+const isLogin= require('../middleware/checklogin')
 
 router.get("/", isLogin, (req, res) => {
-  res.render("main", {Inlogin: res.locals.status});
+  res.render("main", {Inlogin: res.locals.isLogin});
 });
+// router.get("/",  (req, res) => {
+//   res.render("main");
+// });
 
 router
   .route("/registration")

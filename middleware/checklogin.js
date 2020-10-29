@@ -1,4 +1,4 @@
-module.exports = function(req,res,next){
+function islogin (req,res,next){
 if(req.session && req.session.user){
   res.locals.isLogin = true
 }else{
@@ -6,3 +6,4 @@ if(req.session && req.session.user){
 }
 next()
 }
+module.exports = islogin
