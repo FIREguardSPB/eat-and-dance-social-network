@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
   res.render("main");
 });
 
+
 router
   .route("/registration")
   .get(sessionChecker, (req, res) => {
@@ -26,7 +27,9 @@ router
       });
       await user.save();
       req.session.user = user;
-      res.redirect("/");
+
+      res.redirect("/dance");
+
     } catch (error) {
       next(error);
     }
@@ -44,7 +47,9 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
-      res.redirect("/registration");
+
+      res.redirect("/dance");
+
     } else {
       res.redirect("/login");
     }
