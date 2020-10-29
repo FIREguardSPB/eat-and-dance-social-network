@@ -24,6 +24,7 @@
     "jest": "^26.6.1",
     "mongoose": "^5.10.2",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
     "session-file-store": "^1.4.0"
   },
   "bugs": {

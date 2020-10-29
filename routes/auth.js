@@ -40,7 +40,7 @@ router.get('/account/:id',isLogin, async(req,res)=>{
   const params = {username: user.username,
     email: user.email,
     skillsDance: user.skillsDance,
-    myPost: user.postsRef,
+    skillsFood: user.skillsFood,
     Inlogin: res.locals.isLogin,
     id: res.locals.id
   }
