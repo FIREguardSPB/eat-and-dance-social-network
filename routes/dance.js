@@ -4,20 +4,32 @@ const bcrypt = require("bcrypt");
 const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
 const Post = require('../models/posts')
-
+const islogin = require('../middleware/checklogin')
 const saltRounds = 10;
 // const app 
 // app.use(express.urlencoded({extended: true}))
 
 //генерируем главную страницу раздела "DANCE"
-router.get('/', (req, res) =>
-res.render('index_dance'))
+router.get('/', islogin, (req, res) =>{
+const obj = {
+  Inlogin: res.locals.isLogin,
+  id: res.locals.id
+}
+
+res.render('index_dance',obj)
+})
 // router.get('/post-edit-form', (req, res) => {
 //   res.render()
 // })
 
 /* create newPost. */
-router.get('/ajax-create-post', (req, res) => res.render('newPost') )
+router.get('/ajax-create-post', islogin, (req, res) =>{
+const obj={
+  Inlogin: res.locals.isLogin,
+  id: res.locals.id
+}
+res.render('newPost',obj) 
+})
 router.post('/ajax-create-post', async function(req, res) {
   const {newPost} = req.body
   console.log(newPost)

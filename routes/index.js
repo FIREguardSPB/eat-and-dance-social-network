@@ -10,7 +10,12 @@ const router = express.Router();
 
 
 router.get("/", isLogin, (req, res) => {
-  res.render("main", {Inlogin: res.locals.isLogin});
+
+  let obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id
+  }
+  res.render("main", obj);
 });
 
 router
