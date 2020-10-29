@@ -11,7 +11,7 @@ function cookiesCleaner(req, res, next) {
 const sessionChecker = (req, res, next) => {
   if (req.session.user) {
 
-    res.redirect("/dance");
+    res.redirect("/");
   } else {
     next();
   }

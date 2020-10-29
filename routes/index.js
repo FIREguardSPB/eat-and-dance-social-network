@@ -8,9 +8,19 @@ const isLogin = require('../middleware/checklogin')
 const saltRounds = 10;
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("main", {id: req.session.user._id});
+
+router.get("/", isLogin, (req, res) => {
+  let obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id
+  }
+
+  res.render("main", obj);
+
 });
+// router.get("/",  (req, res) => {
+//   res.render("main");
+// });
 
 
 router
@@ -29,8 +39,6 @@ router
       });
       await user.save();
       req.session.user = user;
-
-      res.redirect("/dance");
 
       res.redirect("/");
     } catch (error) {
@@ -59,14 +67,6 @@ router
     }
   });
 
-// router.get("/registration", (req, res) => {
-//   const { user } = req.session;
-//   if (req.session.user) {
-//     res.render("signup", { name: user.username });
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
 
 router.get("/logout", async (req, res, next) => {
   if (req.session.user) {

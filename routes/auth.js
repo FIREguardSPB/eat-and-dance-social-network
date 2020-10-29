@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const isLogin = require('../middleware/checklogin')
 const mongoose = require('mongoose');
 const User = require('../models/users')
 
@@ -34,12 +35,14 @@ if(user){
 }
 })
 //личный кабинет
-router.get('/account/:id',async(req,res)=>{
+router.get('/account/:id',isLogin, async(req,res)=>{
   const user = await User.findOne({_id:req.params.id})
   const params = {username: user.username,
     email: user.email,
     skillsDance: user.skillsDance,
-    myPost: user.postsRef
+    myPost: user.postsRef,
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id
   }
    res.render('personaccount',params)
  })
