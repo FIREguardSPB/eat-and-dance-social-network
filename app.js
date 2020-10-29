@@ -6,7 +6,7 @@ const foodRouter = require('./routes/food')
 const useErrorHandlers = require("./middleware/error-handlers");
 const authRouter = require('./routes/auth')
 
-require('./temp/userseeder')()
+// require('./temp/userseeder')()
 const app = express();
 useMiddleware(app);
 
