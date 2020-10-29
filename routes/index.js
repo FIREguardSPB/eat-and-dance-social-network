@@ -26,7 +26,7 @@ router
       });
       await user.save();
       req.session.user = user;
-      res.redirect("/dashboard");
+      res.redirect("/");
     } catch (error) {
       next(error);
     }
@@ -44,7 +44,8 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
-      res.redirect("/dashboard");
+      res.redirect("/");
+
 
     } else {
       res.redirect("/login");
