@@ -44,7 +44,9 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
-      res.redirect("/registration");
+      res.redirect("/");
+
+
     } else {
       res.redirect("/login");
     }
