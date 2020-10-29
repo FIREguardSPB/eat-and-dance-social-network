@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/learnAuth", {
+mongoose.connect("mongodb://localhost:27017/DB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
