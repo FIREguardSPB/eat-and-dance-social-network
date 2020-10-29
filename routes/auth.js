@@ -37,6 +37,7 @@ const isLogin = require('../middleware/checklogin')
 // }
 // })
 //личный кабинет
+
 router.get('/account/:id',isLogin,  async(req,res)=>{
   try {
   const user = await User.findOne({_id:req.params.id})
@@ -52,4 +53,5 @@ router.get('/account/:id',isLogin,  async(req,res)=>{
     next(error);
   }
 })
+
 module.exports = router;
