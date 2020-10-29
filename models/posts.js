@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 // модель постов пользователей
 const postSchema = new mongoose.Schema({
   postText: { type: String, required: true }, //текст поста
@@ -9,6 +10,4 @@ const postSchema = new mongoose.Schema({
   commentRef: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }], // список комментов
 });
 
-
-const Post = new mongoose.model('Post', postSchema);
-module.exports = Post  
+module.exports = mongoose.model('Post', postSchema);

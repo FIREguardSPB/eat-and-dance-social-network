@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/danceat", {
+require('dotenv').config()
+  mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@projects.vhf01.mongodb.net/test`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
