@@ -19,12 +19,6 @@ res.render('index_dance'))
 /* create newPost. */
 router.get('/ajax-create-post', (req, res) => res.render('newPost') )
 router.post('/ajax-create-post', async function(req, res) {
-  // const {post} = req.body
-  // const newPost = new Post({
-  //   completed: false,
-  //   text: todo
-  // })
-  // await newPost.save()
   const {newPost} = req.body
   console.log(newPost)
   const user = await User.findOne({username: 'Davonte16'})
