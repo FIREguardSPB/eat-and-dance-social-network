@@ -4,7 +4,6 @@ const indexRouter = require("./routes/index");
 const danceRouter = require('./routes/dance')
 const foodRouter = require('./routes/food')
 const useErrorHandlers = require("./middleware/error-handlers");
-require('./temp/userseeder')()
 const app = express();
 useMiddleware(app);
 
