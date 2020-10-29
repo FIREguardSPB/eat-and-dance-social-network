@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/personaccount-style.css">
 <div class="container borders">
     <div class="row">
     <h4 class="head_name">Личный кабинет пользователя</h4>
@@ -20,13 +21,20 @@
         <div class="col s6 right_row">
             <h5 class="headers">Танцы</h5>
             <ul class="list__data">
+              {{#each }}
+              {{/each}}
                 <li class="list__data_item">item1</li>
             </ul>
         </div>
         <div class="col s6 left_row">
             <h5 class="headers">Еда</h5>
             <ul class="list__data">
-                <li class="list__data_item">item6</li>
+              {{#each myPost}}
+               <li class="list__data_item">
+                {{this.theme}},
+                {{this.postDate}}
+               </li>
+              {{/each}}
             </ul>
         </div>
     </div>

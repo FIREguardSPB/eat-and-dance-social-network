@@ -1,0 +1,60 @@
+.account {
+  border-bottom: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 0 !important;
+}
+
+.head_name{
+  padding-left: 20px;
+}
+
+.info {
+  text-align: center;
+}
+
+.info__avatar {
+  width: 180px;
+  height: 170px;
+  border-radius: 50%;
+  border: 3px solid lightpink;
+}
+
+.info__fields {
+  min-height: 180px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid lightslategray;
+}
+
+.wrapper{
+height: 100%;
+  padding-left: 40px;
+}
+
+.headers{
+  font-weight: 700;
+  text-align: center;
+}
+
+.right_row{
+  border-right: 1px solid lightslategray;
+}
+
+.list__data_item {
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.list__data {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.borders {
+  border-right: 1px solid lightslategray;
+  border-left: 1px solid lightslategray;
+}
+
+
