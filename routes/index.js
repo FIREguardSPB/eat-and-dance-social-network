@@ -6,17 +6,18 @@ const User = require("../models/users");
 const saltRounds = 10;
 const router = express.Router();
 
-router.get("/", sessionChecker, (req, res) => {
-  res.redirect("/login");
+router.get("/", (req, res) => {
+  res.render("main");
 });
 
 
 router
-  .route("/signup")
+  .route("/registration")
   .get(sessionChecker, (req, res) => {
     res.render("signup");
   })
   .post(async (req, res, next) => {
+    console.log(req.body);
     try {
       const { username, email, password } = req.body;
       const user = new User({
@@ -26,7 +27,9 @@ router
       });
       await user.save();
       req.session.user = user;
+
       res.redirect("/dance");
+
     } catch (error) {
       next(error);
     }
@@ -44,20 +47,22 @@ router
 
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
+
       res.redirect("/dance");
+
     } else {
       res.redirect("/login");
     }
   });
 
-router.get("/dashboard", (req, res) => {
-  const { user } = req.session;
-  if (req.session.user) {
-    res.render("dashboard", { name: user.username });
-  } else {
-    res.redirect("/login");
-  }
-});
+// router.get("/registration", (req, res) => {
+//   const { user } = req.session;
+//   if (req.session.user) {
+//     res.render("signup", { name: user.username });
+//   } else {
+//     res.redirect("/login");
+//   }
+// });
 
 router.get("/logout", async (req, res, next) => {
   if (req.session.user) {
@@ -69,7 +74,7 @@ router.get("/logout", async (req, res, next) => {
       next(error);
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 
