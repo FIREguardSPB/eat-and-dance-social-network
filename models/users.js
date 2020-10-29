@@ -1,6 +1,8 @@
 const { text } = require("express");
 const mongoose = require("mongoose");
 const Post = require('./posts')
+const Commnet = require('./comments');
+const Theme = require("./themes");
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
@@ -16,13 +18,31 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.createpost = async function (text, theme) {
+  const themeRef = await Theme.findOne({ name: theme })
+  const postsRef = await this.postsRef
   const post = new Post({
     postText: text,
     postDate: Date.now(),
     postAuthor: this._id,
-    theme
+    theme: themeRef._id
   })
-  await post.save()  
+  themeRef.posts.push(post._id)
+  postsRef.push(post._id)
+  await themeRef.save()
+  await post.save()
+  await this.save()
+
+}
+
+userSchema.methods.createcomment = async function (text, post, touser) {
+  const comment = new Commnet({
+    postRef: post,
+    commentDate: Date.now(),
+    postAuthor: this._id,
+    commentText: text,
+    toUser: touser
+  })
+  await comment.save()
 }
 
 module.exports = mongoose.model('User', userSchema);
