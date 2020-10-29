@@ -34,13 +34,5 @@ if(user){
 }
 })
 //личный кабинет
-router.get('/account/:id',async(req,res)=>{
-  const user = await User.findOne({_id:req.params.id})
-  const params = {username: user.username,
-    email: user.email,
-    skillsDance: user.skillsDance,
-    myPost: user.postsRef
-  }
-   res.render('personaccount',params)
- })
+
 module.exports = router;
