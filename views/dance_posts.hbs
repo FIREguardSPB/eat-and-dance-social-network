@@ -1,8 +1,47 @@
+
 <h1>Перестают танцевать не потому что стареют, стареют потому что перестают танцевать.</h1>
 <h1>(Джесси Ньюберн)</h1>
+
+{{!-- <style>
+  .link {
+    color: mediumpurple
+  }
+
+  .block {
+    width: 50%;
+    padding: 0 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    border-bottom: 10px solid rgb(209, 209, 209);
+  }
+
+  .button {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid #000;
+    width: 150px;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .button:hover {
+    transition: 1s;
+    background-color: mediumpurple;
+  }
+
+  .button:hover a {
+    color: white;
+  }
+</style>
+<h1>ДОБРО ПОЖАЛОВАТЬ НА ТАНЦУЛЬКИ!!!</h1>
+
+--}}
+
+
 <br>
 <br>
-<h4> Список постов по теме:</h4>
+<h4> Список постов по теме "{{nameTheme}}":</h4>
 <br>
   {{#if Inlogin}}
 <li><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></li>
@@ -15,3 +54,5 @@
         </p>
     {{!-- </li> --}}
 {{/each}}
+
+

@@ -13,9 +13,10 @@ themeSchema.methods.showPosts = async function () {
   const posts =  await Post.find({ theme: this.id })
   const authorList = posts.map(el => el.postAuthor)
   const users = []
-  //for (const postAuthor of authorList) {
-  //  users.push(await User.findOne({_id: postAuthor}))
-  //}
+  // for (const postAuthor of authorList) {
+    // users.push(await User.findOne({_id: postAuthor}))
+  // }
+
   const postInfo = []
   postInfo.push(posts)
   postInfo.push(users)
