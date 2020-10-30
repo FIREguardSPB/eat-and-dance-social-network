@@ -1,5 +1,5 @@
 <style>
-  .linkItem{
+  .linkItem {
     background-color: white;
     border-bottom: 10px solid rgb(209, 209, 209);
     width: 170px;
@@ -7,17 +7,16 @@
     justify-content: center;
   }
 
-{{!-- 
-  .linkItem:hover{
+  .linkItem:hover {
     transition: .3s;
     background-color: mediumpurple;
   }
 
-  .linkItem:hover a{
-    color:white
+  .linkItem:hover a {
+    color: white
   }
 
-    .button{
+  .button {
     margin-bottom: 20px;
     border-radius: 15px;
     border: 1px solid #000;
@@ -27,58 +26,55 @@
     background-color: #fff;
   }
 
-    .button:hover {
+  .button:hover {
     transition: 1s;
     background-color: mediumpurple;
-        color: white;
+    color: white;
 
   }
 </style>
-<h1>ДОБРО ПОЖАЛОВАТЬ НА ТАНЦУЛЬКИ!!!</h1>
- --}}
- 
 
 
-<h1>Война войной, а обед — по расписанию.</h1>
-<h1>(Фридрих Вильгельм I)</h1>
+<h4>Перестают танцевать не потому что стареют, стареют потому что перестают танцевать.</h4>
+<h5>(Джесси Ньюберн)</h5>
 
 <br>
 <br>
-<h4> Список тем:</h4> 
+<h4> Список тем:</h4>
 
 <div class="row">
   <div id="L" class="col s12 m4 l5">
     <div>
-    {{#each name}}
+      {{#each name}}
         <div style="display: flex; align-items: center" class="linkItem">
         <input type="checkbox" checked={{this.completed}}/>
         <p><a href='/dance/post?ID={{this._id}}'>{{this.name}}</a></p>
-    </div>
-    {{/each}}
+      </div>
+      {{/each}}
     </div>
   </div>
   <div id="C" class="col s12 m4 l2">
-   {{#if Inlogin}}
+    {{#if Inlogin}}
 
 
- <div><a href="/dance/ajax-create-tema" class="button"> Добавить тему </a></div>
-  {{!-- <br>
+    <div><a href="/dance/ajax-create-tema" class="button"> Добавить тему </a></div>
+    {{!-- <br>
  <li><a href="/dance/ajax-create-post"> Добавить пост </a></li>
   <br> --}}
-  <br>
- 
-  <br>
+    <br>
 
-  {{!-- <br>
+    <br>
+
+    {{!-- <br>
  <li><a href="/dance/ajax-create-post"> Добавить пост </a></li>
   <br> --}}
 
 
-   {{/if}}
+    {{/if}}
   </div>
   <div id="R" class="col s12 m4 l5">
     <div>
-     <a href="/dance">  <img style="max-width: 100%;margin: auto; border-radius: 25px; " src="/img/dancing.jpg"></a> 
+      <img style="max-width: 100%;margin: auto; border-radius: 25px; " src="/img/dancing.jpg">
     </div>
-      </div>
+  </div>
 </div>

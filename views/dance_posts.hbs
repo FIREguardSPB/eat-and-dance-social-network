@@ -1,8 +1,5 @@
 
-<h1>Перестают танцевать не потому что стареют, стареют потому что перестают танцевать.</h1>
-<h1>(Джесси Ньюберн)</h1>
-
-{{!-- <style>
+<style>
   .link {
     color: mediumpurple
   }
@@ -34,9 +31,11 @@
     color: white;
   }
 </style>
-<h1>ДОБРО ПОЖАЛОВАТЬ НА ТАНЦУЛЬКИ!!!</h1>
 
---}}
+
+
+<h4>Перестают танцевать не потому что стареют, стареют потому что перестают танцевать.</h4>
+<h5>(Джесси Ньюберн)</h5>
 
 
 <br>
@@ -44,15 +43,15 @@
 <h4> Список постов по теме "{{nameTheme}}":</h4>
 <br>
   {{#if Inlogin}}
-<li><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></li>
+<div class="button"><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></div>
   {{/if}}
  {{#each list}}
-    <li style="display: flex; align-items: center"><br>
+    <div class="block" style="display: flex; align-items: center"><br>
         <p>Написал: {{postAuthor}}<br>
-          <a href='/dance/post?ID={{this._id}}''>{{this.postText}}</a><br>
+          <a href='/dance/post?ID={{this._id}}' class="link">{{this.postText}}</a><br>
         Создан: {{postDate}}
         </p>
-    {{!-- </li> --}}
+    </div>
 {{/each}}
 
 
