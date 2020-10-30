@@ -15,7 +15,6 @@ const obj = {
   Inlogin: res.locals.isLogin,
   id: res.locals.id
 }
-
 res.render('index_dance',obj)
 })
 // router.get('/post-edit-form', (req, res) => {
