@@ -64,6 +64,7 @@ router
 
 });
 // Отображение постов
+
 router.get('/post/', async function (req, res) {
   const nameTheme = req.query.ID
   const postsOfThem = await Theme.findOne({
@@ -74,6 +75,7 @@ router.get('/post/', async function (req, res) {
   res.render('dance_posts', {
     name: posts
   })
+
 
 })
 
