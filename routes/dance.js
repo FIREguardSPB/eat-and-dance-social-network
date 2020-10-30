@@ -11,26 +11,27 @@ const saltRounds = 10;
 // app.use(express.urlencoded({extended: true}))
 
 //генерируем главную страницу раздела "DANCE"
-router.get('/', async (req, res) =>{
+router.get('/', async (req, res) => {
 
-const name = await Theme.find()
+  const name = await Theme.find()
 
-console.log(name)
-res.render('index_dance', {name:name, _id:name})})
+  console.log(name)
+  res.render('index_dance', { name: name, _id: name })
+})
 // router.get('/post-edit-form', (req, res) => {
 //   res.render()
 // })
 
 /* create newPost. */
-router.get('/ajax-create-post', (req, res) => res.render('newPost') )
-router.post('/ajax-create-post', async function(req, res) {
-  const {newPost} = req.body
+router.get('/ajax-create-post', (req, res) => res.render('newPost'))
+router.post('/ajax-create-post', async function (req, res) {
+  const { newPost } = req.body
   console.log(newPost)
-  const user = await User.findOne({username: 'Davonte16'})
+  const user = await User.findOne({ username: 'Davonte16' })
   await user.createpost(newPost, 'placeat')
-  
+
   res.redirect('/dance')
-  
+
 });
 // Отображение постов
 router.get('/post', async function (req, res) {
@@ -61,7 +62,6 @@ res.json(textViewPosts)
 
 
 
-
 // router.post('/ajax-create-post', async function(req, res) {
 //   // const {post} = req.body
 //   // const newPost = new Post({
@@ -69,11 +69,11 @@ res.json(textViewPosts)
 //   //   text: todo
 //   // })
 //   // await newPost.save()
-  
+
 //   const {text} = req.body
 //   console.log(text);
 //   res.json({text, success: true})
-  
+
 // });
 
 //===================.............>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
