@@ -37,13 +37,16 @@ router.post('/ajax-create-post', async function (req, res) {
 router.get('/post', async function (req, res) {
 const nameTheme = req.query.ID
 const postsOfThem = await Theme.findOne({_id: nameTheme})
-console.log(postsOfThem)
+// console.log(postsOfThem)
 //Массив ID постов по выбранной теме
 // res.json(postsOfThem.posts)
 
 const posts = postsOfThem.posts
-console.log(posts)
-let textViewPosts = []
+
+//Показать посты темы
+const viewPosts = await postsOfThem.showPosts()
+console.log(viewPosts[0].postText)
+
 let p 
 // for (i=0; i<posts.length; i++){
 //   p = await Post.findOne({_id: posts[i]})
@@ -53,8 +56,8 @@ let p
 //   // console.log(await Post.findOne({_id: posts[i]}))
 // }
 // console.log(p.postText)
-textViewPosts = posts.map(el => {textViewPosts.push(Post.findOne({_id: el}))})
-res.json(textViewPosts)
+// textViewPosts = posts.map(el => {textViewPosts.push(Post.findOne({_id: el}))})
+res.json(viewPosts[0].postText)
 
 })
 
