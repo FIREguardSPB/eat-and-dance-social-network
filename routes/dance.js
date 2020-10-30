@@ -73,7 +73,8 @@ router.get("/post",isLogin,  async function (req, res) {
 
   //Показать текст постов темы.
   const viewPosts = await postsOfThem.showPosts();
-  res.render("dance_posts", {viewPosts, ...obj, idTheme});
+  const list = viewPosts[0]
+  res.render("dance_posts", {list, ...obj, idTheme});
   
 });
 
