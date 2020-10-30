@@ -4,7 +4,7 @@ const isLogin = require('../middleware/checklogin')
 const mongoose = require('mongoose');
 const User = require('../models/users')
 const { sessionChecker } = require('../middleware/auth');
-const isLogin = require('../middleware/checklogin')
+// const isLogin = require('../middleware/checklogin')
 
 
 // router.post('/registr',  async(req,res)=>{
