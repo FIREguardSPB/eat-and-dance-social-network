@@ -69,13 +69,16 @@ router.get("/post",isLogin,  async function (req, res) {
   const idTheme = req.query.ID;
   //Массив ID постов по выбранной теме
   const postsOfThem = await Theme.findOne({ _id: idTheme });
+  //Название темы в которой отображаем посты
+  const nameTheme = postsOfThem.name
   const posts = postsOfThem.posts;
 
   //Показать текст постов темы.
   const viewPosts = await postsOfThem.showPosts();
   const list = viewPosts[0]
-  res.render("dance_posts", {list, ...obj, idTheme});
-  
+
+  res.render("dance_posts", {list, ...obj, idTheme, nameTheme});
+
 });
 
 module.exports = router;
