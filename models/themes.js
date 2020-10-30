@@ -1,5 +1,6 @@
 const { localsAsTemplateData } = require('hbs');
 const mongoose = require('mongoose')
+const User = require('../models/users')
 const Post = require('./posts')
 // модель тем
 const themeSchema = new mongoose.Schema({
@@ -9,8 +10,17 @@ const themeSchema = new mongoose.Schema({
 });
 
 themeSchema.methods.showPosts = async function () {
-  return await Post.find({ theme: this.id })
-  
+  const posts =  await Post.find({ theme: this.id })
+  const authorList = posts.map(el => el.postAuthor)
+  const users = []
+  // for (const postAuthor of authorList) {
+    // users.push(await User.findOne({_id: postAuthor}))
+  // }
+
+  const postInfo = []
+  postInfo.push(posts)
+  postInfo.push(users)
+  return postInfo;
 }
 
 const Theme = new mongoose.model('Theme', themeSchema);
