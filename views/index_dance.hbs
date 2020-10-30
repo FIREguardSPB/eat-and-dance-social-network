@@ -3,13 +3,30 @@
 
 <br>
 <br>
-<h4> Список тем:</h4> <a href="/dance/ajax-create-post">Добавить пост</a>
-<br>
+<h4> Список тем:</h4> 
 
-
- {{#each name}}
-    <li style="display: flex; align-items: center">
-        {{!-- <input type="checkbox" checked={{this.completed}}/> --}}
-        <p><a href='/dance/post?ID={{this._id}}''>{{this.name}}</a></p>
+<div class="row">
+  <div id="L" class="col s12 m4 l5">
+    <div>
+    {{#each name}}
+        <li style="display: flex; align-items: center">
+        <input type="checkbox" checked={{this.completed}}/>
+        <p><a href='/dance/post?ID={{this._id}}'>{{this.name}}</a></p>
     </li>
-{{/each}}
+    {{/each}}
+    </div>
+  </div>
+  <div id="C" class="col s12 m4 l2">
+   {{#if Inlogin}}
+ <li><a href="/dance/ajax-create-tema"> Добавить тему </a></li>
+  <br>
+ <li><a href="/dance/ajax-create-post"> Добавить пост </a></li>
+  <br>
+   {{/if}}
+  </div>
+  <div id="R" class="col s12 m4 l5">
+    <div>
+     <a href="/dance">  <img style="max-width: 100%;margin: auto; " src="https://image.flaticon.com/icons/png/512/11/11023.png"></a> 
+    </div>
+      </div>
+</div>
