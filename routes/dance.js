@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { sessionChecker } = require("../middleware/auth");
+const {
+  sessionChecker
+} = require("../middleware/auth");
 const User = require("../models/users");
 const Post = require('../models/posts')
 const Theme = require('../models/themes')
@@ -13,36 +15,65 @@ const saltRounds = 10;
 
 //генерируем главную страницу раздела "DANCE"
 
-router.get('/', isLogin, (req, res) =>{
-const obj = {
-  Inlogin: res.locals.isLogin,
-  id: res.locals.id
-}
-res.render('index_dance',obj)
+// router.get('/', isLogin, (req, res) => {
+//   const obj = {
+//     Inlogin: res.locals.isLogin,
+//     id: res.locals.id,
+//     name: res.locals.name,
+//     completed: res.locals.completed
+//   }
+//   res.render('index_dance', obj)
+// })
 
-
-// router.get('/post-edit-form', (req, res) => {
-//   res.render()
+router.get('/',isLogin, async (req, res) => {
+  const obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id,
+   }
+  const name = await Theme.find()
+  // console.log(name)
+  res.render('index_dance', {name: name, _id: name, ...obj})
 })
 
-/* create newPost. */
-router.get('/ajax-create-post', (req, res) => res.render('newPost'))
-router.post('/ajax-create-post', async function (req, res) {
-  const { newPost } = req.body
-  console.log(newPost)
-  const user = await User.findOne({ username: 'Davonte16' })
-  await user.createpost(newPost, 'placeat')
 
+/* create newPost. */
+router
+.route("/ajax-create-post")
+.get(isLogin, (req, res) => {
+  const obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id,
+   }
+  res.render('newPost', obj)})
+.post(isLogin, async function (req, res) {
+  const obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id,
+   }
+  const {
+    newPost
+  } = req.body
+  console.log(newPost)
+  console.log(obj);
+  const user = await User.findOne({
+    _id: obj.id
+  })
+  console.log(user);
+  await user.createpost(newPost, 'Вкусная тема 1')
   res.redirect('/dance')
 
 });
 // Отображение постов
 router.get('/post/', async function (req, res) {
   const nameTheme = req.query.ID
-  const postsOfThem = await Theme.findOne({ _id: nameTheme })
+  const postsOfThem = await Theme.findOne({
+    _id: nameTheme
+  })
   //Массив ID постов по выбранной теме
   const posts = await postsOfThem.showPosts()
-  res.render('dance_posts', {name: posts})
+  res.render('dance_posts', {
+    name: posts
+  })
 
 })
 
