@@ -1,29 +1,21 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const {
   sessionChecker
 } = require("../middleware/auth");
 const User = require("../models/users");
+
 const Post = require('../models/posts')
 const Theme = require('../models/themes')
 const isLogin = require('../middleware/checklogin')
 
+
 const saltRounds = 10;
-// const app 
+// const app
 // app.use(express.urlencoded({extended: true}))
 
 //генерируем главную страницу раздела "DANCE"
-
-// router.get('/', isLogin, (req, res) => {
-//   const obj = {
-//     Inlogin: res.locals.isLogin,
-//     id: res.locals.id,
-//     name: res.locals.name,
-//     completed: res.locals.completed
-//   }
-//   res.render('index_dance', obj)
-// })
 
 router.get('/',isLogin, async (req, res) => {
   const obj = {
@@ -64,63 +56,17 @@ router
 
 });
 // Отображение постов
-
-router.get('/post/', async function (req, res) {
-  const nameTheme = req.query.ID
-  const postsOfThem = await Theme.findOne({
-    _id: nameTheme
-  })
+router.get("/post", async function (req, res) {
+  //Получаем ID темы
+  const nameTheme = req.query.ID;
   //Массив ID постов по выбранной теме
-  const posts = await postsOfThem.showPosts()
-  res.render('dance_posts', {
-    name: posts
-  })
+  const postsOfThem = await Theme.findOne({ _id: nameTheme });
+  const posts = postsOfThem.posts;
 
+  //Показать текст постов темы.
+  const viewPosts = await postsOfThem.showPosts();
+  res.render("dance_posts", { viewPosts});
+  
+});
 
-})
-
-
-
-
-
-// router.post('/ajax-create-post', async function(req, res) {
-//   // const {post} = req.body
-//   // const newPost = new Post({
-//   //   completed: false,
-//   //   text: todo
-//   // })
-//   // await newPost.save()
-
-//   const {text} = req.body
-//   console.log(text);
-//   res.json({text, success: true})
-
-// });
-
-//===================.............>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-// const Todo = require('../models/Todo')
-
-// const router = express.Router()
-
-// router.post('/', async (req ,res) => {
-//   const { todo } = req.body
-//   const newTodo = new Todo({
-//     completed: false,
-//     text: todo
-//   })
-//   await newTodo.save()
-//   res.redirect('/')
-// })
-
-// router.post('/ajax', async (req, res) => {
-//   const {todo} = req.body
-//   const newTodo = new Todo({
-//     completed: true,
-//     text: todo
-//   })
-//   await newTodo.save()
-//   res.json({newTodo, success: true})
-// })
-
-module.exports = router
+module.exports = router;

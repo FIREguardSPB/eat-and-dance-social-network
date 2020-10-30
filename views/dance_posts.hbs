@@ -5,9 +5,11 @@
 <h4> Список постов по теме:</h4>
 <br>
 
- {{#each name}}
-    <li style="display: flex; align-items: center">
-        {{!-- <input type="checkbox" checked={{this.completed}}/> --}}
-        <p><a href='/dance/post?ID={{this._id}}''>{{this.postText}}</a></p>
-    </li>
+ {{#each viewPosts}}
+    <li style="display: flex; align-items: center"><br>
+        <p>Написал: {{postAuthor}}<br>
+          <a href='/dance/post?ID={{this._id}}''>{{this.postText}}</a><br>
+        Создан: {{postDate}}
+        </p>
+    {{!-- </li> --}}
 {{/each}}
