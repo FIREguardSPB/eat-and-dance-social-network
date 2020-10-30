@@ -6,7 +6,6 @@ const User = require('../models/users')
 const { sessionChecker } = require('../middleware/auth');
 
 
-
 // router.post('/registr',  async(req,res)=>{
 //  const{username,email,password}=req.body
 //  const user = new User({
