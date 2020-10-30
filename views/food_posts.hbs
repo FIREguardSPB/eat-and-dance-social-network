@@ -1,0 +1,18 @@
+<h1>Война войной, а обед — по расписанию.</h1>
+<h1>(Фридрих Вильгельм I)</h1>
+
+<br>
+<br>
+<h4> Список постов по теме:</h4>
+<br>
+  {{#if Inlogin}}
+<li><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></li>
+  {{/if}}
+ {{#each list}}
+    <li style="display: flex; align-items: center"><br>
+        <p>Написал: {{postAuthor}}<br>
+          <a href='/dance/post?ID={{this._id}}''>{{this.postText}}</a><br>
+        Создан: {{postDate}}
+        </p>
+    {{!-- </li> --}}
+{{/each}}

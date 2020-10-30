@@ -22,7 +22,7 @@ router.get('/',isLogin, async (req, res) => {
     Inlogin: res.locals.isLogin,
     id: res.locals.id,
    }
-  const name = await Theme.find()
+  const name = await Theme.find({section: "dance"})
   // console.log(name)
   res.render('index_dance', {name: name, _id: name, ...obj})
 })
@@ -47,14 +47,14 @@ router
   const {
     newPost
   } = req.body
-  console.log(newPost)
+  // console.log(newPost)
   // console.log(obj);
   const user = await User.findOne({
     _id: obj.id
   })
   // console.log(user);
   const idTheme = req.query.ID
-  console.log(idTheme);
+  // console.log(idTheme);
   await user.createpost(newPost, idTheme)
   res.redirect('/dance')
 
