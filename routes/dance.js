@@ -36,7 +36,9 @@ router
     Inlogin: res.locals.isLogin,
     id: res.locals.id,
    }
-  res.render('newPost', obj)})
+   const idTheme = req.query.ID
+
+  res.render('newPost', {...obj, idTheme})})
 .post(isLogin, async function (req, res) {
   const obj = {
     Inlogin: res.locals.isLogin,
@@ -46,26 +48,35 @@ router
     newPost
   } = req.body
   console.log(newPost)
-  console.log(obj);
+  // console.log(obj);
   const user = await User.findOne({
     _id: obj.id
   })
-  console.log(user);
-  await user.createpost(newPost, 'Вкусная тема 1')
+  // console.log(user);
+  const idTheme = req.query.ID
+  console.log(idTheme);
+  await user.createpost(newPost, idTheme)
   res.redirect('/dance')
 
 });
 // Отображение постов
-router.get("/post", async function (req, res) {
+router.get("/post",isLogin,  async function (req, res) {
+  const obj = {
+    Inlogin: res.locals.isLogin,
+    id: res.locals.id,
+   }
   //Получаем ID темы
-  const nameTheme = req.query.ID;
+  const idTheme = req.query.ID;
   //Массив ID постов по выбранной теме
-  const postsOfThem = await Theme.findOne({ _id: nameTheme });
+  const postsOfThem = await Theme.findOne({ _id: idTheme });
+  //Название темы в которой отображаем посты
+  const nameTheme = postsOfThem.name
   const posts = postsOfThem.posts;
 
   //Показать текст постов темы.
   const viewPosts = await postsOfThem.showPosts();
-  res.render("dance_posts", { viewPosts});
+  const list = viewPosts[0]
+  res.render("dance_posts", {list, ...obj, idTheme, nameTheme});
   
 });
 

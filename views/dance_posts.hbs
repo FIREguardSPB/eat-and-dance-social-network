@@ -2,10 +2,12 @@
 
 <br>
 <br>
-<h4> Список постов по теме:</h4>
-<br><a href="/dance/ajax-create-post"> Добавить пост </a>
-
- {{#each viewPosts}}
+<h4> Список постов по теме "{{nameTheme}}":</h4>
+<br>
+  {{#if Inlogin}}
+<li><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></li>
+  {{/if}}
+ {{#each list}}
     <li style="display: flex; align-items: center"><br>
         <p>Написал: {{postAuthor}}<br>
           <a href='/dance/post?ID={{this._id}}''>{{this.postText}}</a><br>

@@ -11,26 +11,35 @@
   <script defer src="/js/ajax.js"></script>
 
   <title>FooDance</title>
-  {{!-- <style>
-body { background: url("https://images.unsplash.com/photo-1603892956520-82a1fa05ddbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); }
-
-</style>  --}}
-
+<link rel="icon" href="http://faviconka.ru/ico/faviconka_ru_925.png" type="image/x-icon">
 </head>
+<style>
+  .icon {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    position: absolute;
+  }
+  .icon img{
+    margin-right: 10px;
+  }
 
-<body style="background-color:rgba(48, 54, 56, 0.603)">
+  .icon span{
+    font-size: 36px;
+  }
+</style>
+<body style="background-color:rgb(209, 209, 209)">
   <nav>
     <div class="nav-wrapper">
-      <a class="brand-logo" href="/">FooDance</a>
+      <a class="icon" href="/">
+      <img src="/img/conversation.png" width="50px"/>
+      <span>FooDance</span>
+      </a>
       <ul class="right hide-on-med-and-down">
         {{#if Inlogin}}
-        <li><a href="/dance">Dance</a></li>
-        <li><a href="/food">Food</a></li>
         <li><a href="/auth/account/{{id}}">Account</a></li>
         <li><a href="/logout">Log Out</a></li>
-       
-
-
         {{else}}
         <li><a href="/login">Log In</a></li>
         <li><a href="/registration">Registration</a></li>
