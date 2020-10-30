@@ -2,12 +2,11 @@
   .row {
     text-align: center;
     margin: 10px;
-    {{!-- border: 1px solid blue; --}}
+    padding-top: 40px;
   }
    .col {
     text-align: center;
-    {{!-- border: 1px solid blue; --}}
-    {{!-- margin: 10px; --}}
+
   }
 
   #L{
@@ -19,32 +18,74 @@
   #R{
     height: 83vh;
   }
+
+  .picture {
+    width: 60%;
+    height: 90%;
+    border-radius: 10%;
+  }
+
+  .word {
+    visibility: hidden;
+    font-size: 36px;
+    position: absolute;
+    left: 39%;
+    text-shadow: 2px 2px 0px #000000;
+    top: 30%;
+    z-index: 10000;
+  }
+
+    .word2 {
+      text-shadow: 2px 2px 0px #000000;
+    visibility: hidden;
+    font-size: 36px;
+    position: absolute;
+    left: 31%;
+    top: 30%;
+    z-index: 10000;
+  }
+
+  .item{
+    position: relative;
+  }
+
+    .item:hover p{
+      color: #fff;
+    font-size: 84px;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .item:hover a{
+    z-index: 1;
+    opacity: 0.5;
+  }
 </style>
 
 
 <div class="row">
   <div id="UP" class="col s12">
-    <p>EAT AND DANCE</p>
   </div>
-  <div id="L" class="col s12 m4 l5">
-    <div>
-     <a href="/food"><img style="max-width: 100%;margin: auto; " src="https://interior-stickers.ru/27102/tarelka-vilka-lojka.jpg"></a> 
+  <div id="L" class="col s12 m6 l6">
+    <div class="item">
+     <p class="word">Еда</p>
+     <a href="/food">
+      <img class="picture" src="/img/food.jpg">
+     </a> 
     </div>
   </div>
-  <div id="C" class="col s12 m4 l2">
-    <p>Тут будет выводиться ближайшие события</p>
-    <p>Тут будет выводиться ближайшие события</p>
-    <p>Тут будет выводиться ближайшие события</p>
-  </div>
-  <div id="R" class="col s12 m4 l5">
-    <div>
-     <a href="/dance">  <img style="max-width: 100%;margin: auto; " src="https://image.flaticon.com/icons/png/512/11/11023.png"></a> 
+
+  {{!-- <div id="C" class="col s12 m4 l2">
+  </div>  --}}
+  <div id="R" class="col s12 m6 l6">
+    <div class="item">
+      <p class="word2">Танцы</p>
+     <a href="/dance">  <img class="picture" src="img/dance.jpg"></a> 
+
     </div>
       </div>
 </div>
-<div class="row">
-  <div class="col s12 m6 l12"></div>Footer
-</div>
+
 {{!-- <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
     <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
     <div class="col s12 m6 l3"><p>s12 m6 l3</p></div> --}}
