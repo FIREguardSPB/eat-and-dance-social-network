@@ -4,41 +4,70 @@ const bcrypt = require("bcrypt");
 const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
 const Post = require('../models/posts')
-const islogin = require('../middleware/checklogin')
+const Theme = require('../models/themes')
+const isLogin = require('../middleware/checklogin')
+
 const saltRounds = 10;
 // const app 
 // app.use(express.urlencoded({extended: true}))
 
 //генерируем главную страницу раздела "DANCE"
-router.get('/', islogin, (req, res) =>{
+
+router.get('/', isLogin, (req, res) =>{
 const obj = {
   Inlogin: res.locals.isLogin,
   id: res.locals.id
 }
-
 res.render('index_dance',obj)
-})
+
+
 // router.get('/post-edit-form', (req, res) => {
 //   res.render()
-// })
+})
 
 /* create newPost. */
-router.get('/ajax-create-post', islogin, (req, res) =>{
-const obj={
-  Inlogin: res.locals.isLogin,
-  id: res.locals.id
-}
-res.render('newPost',obj) 
-})
-router.post('/ajax-create-post', async function(req, res) {
-  const {newPost} = req.body
+router.get('/ajax-create-post', (req, res) => res.render('newPost'))
+router.post('/ajax-create-post', async function (req, res) {
+  const { newPost } = req.body
   console.log(newPost)
-  const user = await User.findOne({username: 'Davonte16'})
-  await user.createpost(newPost, '5f9aabd25cde340422a4492f')
-  
-  res.redirect('/')
-  
+  const user = await User.findOne({ username: 'Davonte16' })
+  await user.createpost(newPost, 'placeat')
+
+  res.redirect('/dance')
+
 });
+// Отображение постов
+router.get('/post', async function (req, res) {
+const nameTheme = req.query.ID
+const postsOfThem = await Theme.findOne({_id: nameTheme})
+// console.log(postsOfThem)
+//Массив ID постов по выбранной теме
+// res.json(postsOfThem.posts)
+
+const posts = postsOfThem.posts
+
+//Показать посты темы
+const viewPosts = await postsOfThem.showPosts()
+console.log(viewPosts[0].postText)
+
+let p 
+// for (i=0; i<posts.length; i++){
+//   p = await Post.findOne({_id: posts[i]})
+
+//   // console.log(p[postText])
+//   // console.log('\n',p)
+//   // console.log(await Post.findOne({_id: posts[i]}))
+// }
+// console.log(p.postText)
+// textViewPosts = posts.map(el => {textViewPosts.push(Post.findOne({_id: el}))})
+res.json(viewPosts[0].postText)
+
+})
+
+
+
+
+
 // router.post('/ajax-create-post', async function(req, res) {
 //   // const {post} = req.body
 //   // const newPost = new Post({
@@ -46,11 +75,11 @@ router.post('/ajax-create-post', async function(req, res) {
 //   //   text: todo
 //   // })
 //   // await newPost.save()
-  
+
 //   const {text} = req.body
 //   console.log(text);
 //   res.json({text, success: true})
-  
+
 // });
 
 //===================.............>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
