@@ -1,1 +1,30 @@
-ДОБРО ПОЖАЛОВАТЬ НА ЖРАЧКУ!!!
+
+
+<h1>Война войной, а обед — по расписанию.</h1>
+<h1>(Фридрих Вильгельм I)</h1>
+<br>
+<br>
+<h4> Список тем:</h4> 
+
+<div class="row">
+  <div id="L" class="col s12 m4 l5">
+    <div>
+    {{#each name}}
+        <li style="display: flex; align-items: center">
+        <input type="checkbox" checked={{this.completed}}/>
+        <p><a href='/dance/post?ID={{this._id}}'>{{this.name}}</a></p>
+    </li>
+    {{/each}}
+    </div>
+  </div>
+  <div id="C" class="col s12 m4 l2">
+   {{#if Inlogin}}
+ <li><a href="/dance/ajax-create-tema"> Добавить тему </a></li>
+   {{/if}}
+  </div>
+  <div id="R" class="col s12 m4 l5">
+    <div>
+     <a href="/dance">  <img style="max-width: 100%;margin: auto; " src="https://bumper-stickers.ru/27102-thickbox_default/tarelka-vilka-lojka.jpg"></a> 
+    </div>
+      </div>
+</div>
