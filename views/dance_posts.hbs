@@ -4,7 +4,9 @@
 <br>
 <h4> Список постов по теме:</h4>
 <br>
-
+  {{#if Inlogin}}
+<li><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></li>
+  {{/if}}
  {{#each viewPosts}}
     <li style="display: flex; align-items: center"><br>
         <p>Написал: {{postAuthor}}<br>

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 });
 // Метод создания поста от имени текущего пользователя
 userSchema.methods.createpost = async function (text, theme) {
-  const themeRef = await Theme.findOne({ name: theme }) // ищется тема, чтобы добавить пост в список
+  const themeRef = await Theme.findOne({ _id: theme }) // ищется тема, чтобы добавить пост в список
   const postsRef = await this.postsRef // посты юзера
   const post = new Post({ 
     postText: text,
