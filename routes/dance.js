@@ -37,12 +37,27 @@ router.post('/ajax-create-post', async function (req, res) {
 
 });
 // Отображение постов
-router.get('/post/', async function (req, res) {
-  const nameTheme = req.query.ID
-  const postsOfThem = await Theme.findOne({ _id: nameTheme })
-  //Массив ID постов по выбранной теме
-  const posts = await postsOfThem.showPosts()
-  res.render('dance_posts', {name: posts})
+router.get('/post', async function (req, res) {
+const nameTheme = req.query.ID
+const postsOfThem = await Theme.findOne({_id: nameTheme})
+console.log(postsOfThem)
+//Массив ID постов по выбранной теме
+// res.json(postsOfThem.posts)
+
+const posts = postsOfThem.posts
+console.log(posts)
+let textViewPosts = []
+let p 
+// for (i=0; i<posts.length; i++){
+//   p = await Post.findOne({_id: posts[i]})
+
+//   // console.log(p[postText])
+//   // console.log('\n',p)
+//   // console.log(await Post.findOne({_id: posts[i]}))
+// }
+// console.log(p.postText)
+textViewPosts = posts.map(el => {textViewPosts.push(Post.findOne({_id: el}))})
+res.json(textViewPosts)
 
 })
 
