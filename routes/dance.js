@@ -39,6 +39,7 @@ const postsOfThem = await Theme.findOne({_id: nameTheme})
 console.log(postsOfThem)
 //Массив ID постов по выбранной теме
 // res.json(postsOfThem.posts)
+
 const posts = postsOfThem.posts
 console.log(posts)
 let textViewPosts = []
