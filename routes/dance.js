@@ -5,6 +5,7 @@ const { sessionChecker } = require("../middleware/auth");
 const User = require("../models/users");
 const Post = require('../models/posts')
 const Theme = require('../models/themes')
+const isLogin = require('../middleware/checklogin')
 
 const saltRounds = 10;
 // const app 
@@ -12,7 +13,7 @@ const saltRounds = 10;
 
 //генерируем главную страницу раздела "DANCE"
 
-router.get('/', islogin, (req, res) =>{
+router.get('/', isLogin, (req, res) =>{
 const obj = {
   Inlogin: res.locals.isLogin,
   id: res.locals.id
@@ -22,7 +23,7 @@ res.render('index_dance',obj)
 
 // router.get('/post-edit-form', (req, res) => {
 //   res.render()
-// })
+})
 
 /* create newPost. */
 router.get('/ajax-create-post', (req, res) => res.render('newPost'))
