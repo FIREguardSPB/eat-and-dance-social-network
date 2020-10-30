@@ -10,7 +10,6 @@ const router = express.Router();
 
 
 router.get("/", isLogin, (req, res) => {
-
   let obj = {
     Inlogin: res.locals.isLogin,
     id: res.locals.id
