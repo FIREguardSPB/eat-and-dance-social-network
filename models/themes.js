@@ -4,6 +4,7 @@ const Post = require('./posts')
 // модель тем
 const themeSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true }, // название темы
+  section: { type: String, required: true, unique: true }, // в какой раздел food/dance
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }], // посты в теме
 });
 
