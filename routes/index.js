@@ -10,18 +10,13 @@ const router = express.Router();
 
 
 router.get("/", isLogin, (req, res) => {
+
   let obj = {
     Inlogin: res.locals.isLogin,
     id: res.locals.id
   }
-
   res.render("main", obj);
-
 });
-// router.get("/",  (req, res) => {
-//   res.render("main");
-// });
-
 
 router
   .route("/registration")
@@ -39,7 +34,6 @@ router
       });
       await user.save();
       req.session.user = user;
-
       res.redirect("/");
     } catch (error) {
       next(error);
@@ -53,15 +47,10 @@ router
   })
   .post(async (req, res) => {
     const { username, password } = req.body;
-
     const user = await User.findOne({ username });
-
     if (user && (await bcrypt.compare(password, user.password))) {
       req.session.user = user;
-
       res.redirect("/");
-
-
     } else {
       res.redirect("/login");
     }
