@@ -47,7 +47,7 @@
   {{/if}}
  {{#each list}}
     <div class="block" style="display: flex; align-items: center"><br>
-        <p>Написал: {{postAuthor}}<br>
+        <p>Написал: {{postAuthor.username}}<br>
           <a href='/dance/post?ID={{this._id}}' class="link">{{this.postText}}</a><br>
         Создан: {{postDate}}
         </p>

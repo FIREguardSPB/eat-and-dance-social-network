@@ -17,54 +17,55 @@ const saltRounds = 10;
 
 //генерируем главную страницу раздела "DANCE"
 
-router.get('/',isLogin, async (req, res) => {
+router.get('/', isLogin, async (req, res) => {
   const obj = {
     Inlogin: res.locals.isLogin,
     id: res.locals.id,
-   }
-  const name = await Theme.find({section: "dance"})
+  }
+  const name = await Theme.find({ section: "dance" })
   // console.log(name)
-  res.render('index_dance', {name: name, _id: name, ...obj})
+  res.render('index_dance', { name: name, _id: name, ...obj })
 })
 
 
 /* create newPost. */
 router
-.route("/ajax-create-post")
-.get(isLogin, (req, res) => {
-  const obj = {
-    Inlogin: res.locals.isLogin,
-    id: res.locals.id,
-   }
-   const idTheme = req.query.ID
+  .route("/ajax-create-post")
+  .get(isLogin, (req, res) => {
+    const obj = {
+      Inlogin: res.locals.isLogin,
+      id: res.locals.id,
+    }
+    const idTheme = req.query.ID
 
-  res.render('newPost', {...obj, idTheme})})
-.post(isLogin, async function (req, res) {
-  const obj = {
-    Inlogin: res.locals.isLogin,
-    id: res.locals.id,
-   }
-  const {
-    newPost
-  } = req.body
-  // console.log(newPost)
-  // console.log(obj);
-  const user = await User.findOne({
-    _id: obj.id
+    res.render('newPost', { ...obj, idTheme })
   })
-  // console.log(user);
-  const idTheme = req.query.ID
-  // console.log(idTheme);
-  await user.createpost(newPost, idTheme)
-  res.redirect('/dance')
+  .post(isLogin, async function (req, res) {
+    const obj = {
+      Inlogin: res.locals.isLogin,
+      id: res.locals.id,
+    }
+    const {
+      newPost
+    } = req.body
+    // console.log(newPost)
+    // console.log(obj);
+    const user = await User.findOne({
+      _id: obj.id
+    })
+    // console.log(user);
+    const idTheme = req.query.ID
+    // console.log(idTheme);
+    await user.createpost(newPost, idTheme)
+    res.redirect('/dance')
 
-});
+  });
 // Отображение постов
-router.get("/post",isLogin,  async function (req, res) {
+router.get("/post", isLogin, async function (req, res) {
   const obj = {
     Inlogin: res.locals.isLogin,
     id: res.locals.id,
-   }
+  }
   //Получаем ID темы
   const idTheme = req.query.ID;
   //Массив ID постов по выбранной теме
@@ -76,10 +77,9 @@ router.get("/post",isLogin,  async function (req, res) {
 
   //Показать текст постов темы.
   const viewPosts = await postsOfThem.showPosts();
-
-  const list = viewPosts[0]
-
-  res.render("dance_posts", {list, ...obj, idTheme, nameTheme});
+  const list = viewPosts
+  
+  res.render("dance_posts", { list, ...obj, idTheme, nameTheme });
 
 });
 
