@@ -75,8 +75,13 @@ router.get("/post",isLogin,  async function (req, res) {
 
   //Показать текст постов темы.
   const viewPosts = await postsOfThem.showPosts();
-  const list = viewPosts[0]
+console.log(viewPosts)
 
+  const list = viewPosts[0]
+  // const author = []
+  // for (let postAuthor in list){author}
+
+console.log(list.postText)
   res.render("dance_posts", {list, ...obj, idTheme, nameTheme});
 
 });
