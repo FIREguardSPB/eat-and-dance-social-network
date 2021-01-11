@@ -1,4 +1,3 @@
-
 <style>
   .link {
     color: mediumpurple
@@ -34,24 +33,22 @@
 
 
 
-<h4>Перестают танцевать не потому что стареют, стареют потому что перестают танцевать.</h4>
-<h5>(Джесси Ньюберн)</h5>
 
+<h4>Война войной, а обед — по расписанию.</h4>
+<h5>(Фридрих Вильгельм I)</h5>
 
 <br>
 <br>
-<h4> Список постов по теме "{{nameTheme}}":</h4>
+<h4> Список постов по теме:</h4>
 <br>
   {{#if Inlogin}}
 <div class="button"><a href="/dance/ajax-create-post?ID={{idTheme}}"> Добавить пост </a></div>
   {{/if}}
  {{#each list}}
-    <div class="block" style="display: flex; align-items: center"><br>
-        <p>Написал: {{postAuthor.username}}<br>
-          <a href='/dance/post?ID={{this._id}}' class="link">{{this.postText}}</a><br>
+    <div style="display: flex; align-items: center" class="block"><br>
+        <p>Написал: {{postAuthor}}<br>
+          <a class="link" href='/dance/post?ID={{this._id}}'>{{this.postText}}</a><br>
         Создан: {{postDate}}
         </p>
     </div>
 {{/each}}
-
-
